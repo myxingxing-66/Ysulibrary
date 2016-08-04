@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/base_margin_side">
+
+    <TextView
+        android:id="@+id/tv_book_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6.0dip"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:padding="5dp"
+        android:textSize="20sp" 
+        android:text="书名"
+        android:textColor="#9933CC"/>
+    
+     <TextView
+        android:id="@+id/tv_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:layout_marginTop="@dimen/now_lend_item_margin_top"
+        android:singleLine="true"
+        android:text="作者:"
+        android:textSize="@dimen/now_lend_text_size" />
+    
+    <TextView
+        android:id="@+id/tv_book_publish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:layout_marginTop="8dp"
+        android:singleLine="true"
+        android:text="条出版社:"
+        android:textSize="@dimen/now_lend_text_size" />
+
+    <TextView
+        android:id="@+id/tv_book_asord_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:layout_marginTop="@dimen/now_lend_item_margin_top"
+        android:singleLine="true"
+        android:text="荐购日期:"
+        android:textSize="@dimen/now_lend_text_size" />
+
+    <TextView
+        android:id="@+id/tv_asord_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:layout_marginTop="@dimen/now_lend_item_margin_top"
+        android:singleLine="true"
+        android:text="荐购状态:"
+        android:textSize="@dimen/now_lend_text_size" />
+
+    <TextView
+        android:id="@+id/tv_asord_other"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:layout_marginTop="@dimen/now_lend_item_margin_top"
+        android:text="处理备注:"
+        android:textSize="@dimen/now_lend_text_size" />
+
+</LinearLayout>

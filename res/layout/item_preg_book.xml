@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/base_margin_side">
+
+    <TextView
+        android:id="@+id/tv_book_isbn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6.0dip"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:padding="5dp"
+        android:text="索书号:"/>
+    
+     <TextView
+        android:id="@+id/tv_tit_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:layout_marginTop="@dimen/now_lend_item_margin_top"
+        android:singleLine="true"
+        android:text="题目/作者:"
+        android:textSize="@dimen/now_lend_text_size" />
+    
+    <TextView
+        android:id="@+id/tv_book_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:layout_marginTop="8dp"
+        android:singleLine="true"
+        android:text="馆藏地:"
+        android:textSize="@dimen/now_lend_text_size" />
+
+    <TextView
+        android:id="@+id/tv_book_asord_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:layout_marginTop="@dimen/now_lend_item_margin_top"
+        android:singleLine="true"
+        android:text="预约/到书日:"
+        android:textSize="@dimen/now_lend_text_size" />
+
+    <TextView
+        android:id="@+id/tv_book_deadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:layout_marginTop="@dimen/now_lend_item_margin_top"
+        android:singleLine="true"
+        android:text="截止日期:"
+        android:textSize="@dimen/now_lend_text_size" />
+
+    <TextView
+        android:id="@+id/tv_book_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:layout_marginTop="@dimen/now_lend_item_margin_top"
+        android:singleLine="true"
+        android:text="取书地:"
+        android:textSize="@dimen/now_lend_text_size" />
+    
+    <TextView
+        android:id="@+id/tv_book_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:layout_marginTop="@dimen/now_lend_item_margin_top"
+        android:singleLine="true"
+        android:text="状态"
+        android:textSize="@dimen/now_lend_text_size" />
+
+</LinearLayout>

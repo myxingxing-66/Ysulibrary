@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_action_bar_height"
+        android:background="#12B7F5">
+
+        <TextView
+            style="@style/activity_top_bar_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="检索" />
+
+    </RelativeLayout>
+	
+    <LinearLayout
+        android:id="@+id/layout_book_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Spinner
+            android:id="@+id/first_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <EditText
+            android:id="@+id/title_Id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
+
+        <Button
+            android:id="@+id/searchok"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginRight="11dp"
+            android:background="@drawable/btn_login_selector"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="搜索"
+            android:textColor="@color/base_color_text_white"
+            android:textSize="14sp" />
+    </LinearLayout>
+    
+</LinearLayout>
