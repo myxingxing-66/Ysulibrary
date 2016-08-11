@@ -47,6 +47,10 @@
         <item name="android:scaleType">fitXY</item>
         <item name="android:layout_marginLeft">@dimen/base_margin_side</item>
     </style>
-
+	
+    <style name="MenuPop" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/scale_top_in</item>
+        <item name="android:windowExitAnimation">@anim/scale_top_out</item>
+    </style>
     
 </resources>

@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string-array name="titlespinner">
+        <item >题名</item>
+        <item >责任者</item>
+        <item >主题词</item>
+        <item >ISBN/ISSN</item>
+        <item >订购号</item>
+        <item >分类号</item>
+        <item >索书号</item>
+        <item >出版社</item>
+        <item >丛书名</item>
+        <item >题名拼音</item>
+        <item >责任者拼音</item>
+    </string-array>
+    
     <string name="app_name">YsuLibrary</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>

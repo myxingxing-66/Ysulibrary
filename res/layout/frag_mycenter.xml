@@ -8,7 +8,7 @@
     <RelativeLayout 
         android:layout_width="match_parent"
         android:layout_height="@dimen/base_action_bar_height"
-        android:background="#12B7F5">
+        android:background="@color/base_topbar_bg">
 
         <TextView
             style="@style/activity_top_bar_title_text"

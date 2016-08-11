@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="vertical" >
+    
+    <Button 
+        android:id="@+id/btn_layout_book_search"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@drawable/base_pop_bg_selector"
+        android:gravity="center"
+        android:text="检索"/>
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@drawable/base_horization_line"/>
+    
+    <Button 
+        android:id="@+id/btn_hot_book"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/base_pop_bg_selector"
+        android:gravity="center"
+        android:text="热门借阅"/>
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@drawable/base_horization_line"/>
+    
+    <Button 
+        android:id="@+id/btn_layout_new_book"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/base_pop_bg_selector"
+        android:gravity="center"
+        android:text="新书通报"/>
+    
+</LinearLayout>

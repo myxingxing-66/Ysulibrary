@@ -13,14 +13,14 @@
             style="@style/activity_top_bar_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="荐购历史" />
+            android:text="荐购历史" /> 
 
     </RelativeLayout>
     
-    <com.example.ysulibrary.view.xlist.XListView 
+    <cn.myxingxing.ysulibrary.view.xlist.XListView 
         android:id="@+id/lv_asord_history"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.example.ysulibrary.view.xlist.XListView>
+    </cn.myxingxing.ysulibrary.view.xlist.XListView>
     
 </LinearLayout>

@@ -7,13 +7,29 @@
     <RelativeLayout 
         android:layout_width="match_parent"
         android:layout_height="@dimen/base_action_bar_height"
-        android:background="#12B7F5">
+        android:background="@color/base_topbar_bg"
+        android:id="@+id/layout_action"
+        android:orientation="vertical">
 
-        <TextView
-            style="@style/activity_top_bar_title_text"
+        <LinearLayout 
+            android:id="@+id/ly_search_top"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="检索" />
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+            <TextView 
+                android:id="@+id/tv_title"
+                android:text="检索"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="22sp"/>
+            <ImageView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:src="@drawable/btn_arrow_selector"/>
+        </LinearLayout>
 
     </RelativeLayout>
 	
@@ -30,13 +46,13 @@
             android:layout_weight="1" />
 
         <EditText
-            android:id="@+id/title_Id"
+            android:id="@+id/et_book_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2" />
 
         <Button
-            android:id="@+id/searchok"
+            android:id="@+id/btn_search_ok"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
             android:layout_marginRight="11dp"
@@ -47,5 +63,25 @@
             android:textColor="@color/base_color_text_white"
             android:textSize="14sp" />
     </LinearLayout>
+    
+   	<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0" >
+
+        <cn.myxingxing.ysulibrary.view.xlist.XListView
+            android:id="@+id/lv_book"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="@color/base_color_text_white"
+            android:cacheColorHint="#00000000">
+       	</cn.myxingxing.ysulibrary.view.xlist.XListView>
+
+        <include layout="@layout/include_no_data" />
+
+        <include layout="@layout/include_progress" />
+"
+    </RelativeLayout>
     
 </LinearLayout>

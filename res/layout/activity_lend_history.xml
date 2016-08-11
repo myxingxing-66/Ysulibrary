@@ -17,10 +17,10 @@
 
     </RelativeLayout>
 	
-    <com.example.ysulibrary.view.xlist.XListView 
+    <cn.myxingxing.ysulibrary.view.xlist.XListView 
         android:id="@+id/lv_lend_history"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.example.ysulibrary.view.xlist.XListView>
+    </cn.myxingxing.ysulibrary.view.xlist.XListView>
     
 </LinearLayout>
