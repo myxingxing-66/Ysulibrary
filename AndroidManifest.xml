@@ -31,6 +31,7 @@
         <activity android:name="cn.myxingxing.ysulibrary.activities.LendHistoryActivity"></activity>
         <activity android:name="cn.myxingxing.ysulibrary.activities.AsordHistoryActivity"></activity>
         <activity android:name="cn.myxingxing.ysulibrary.activities.PreBookActivity"></activity>
+        <activity android:name="cn.myxingxing.ysulibrary.activities.BookDetailActivity"></activity>
     </application>
 
 </manifest>

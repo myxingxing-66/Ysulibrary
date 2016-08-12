@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView 
+        android:id="@+id/title_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:text="书名"
+        android:textSize="25sp"/>
+    <TextView 
+        android:id="@+id/author_textView"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:textSize="@dimen/search_book_item_text_size"
+        android:text="作者"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/ISBN_textView"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/search_book_item_text_size"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:text="ISBN"
+        android:layout_height="wrap_content"/>
+    <TextView 
+        android:id="@+id/borrow_textView"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/search_book_item_text_size"
+        android:layout_marginLeft="@dimen/base_margin_side"
+        android:text="馆藏"
+        android:textColor="#EE0000"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

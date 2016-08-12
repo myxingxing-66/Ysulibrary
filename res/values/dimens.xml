@@ -12,4 +12,5 @@
 	<dimen name="my_center_text_margin_left">15dp</dimen>
 	<dimen name="now_lend_text_size">15sp</dimen>
 	<dimen name="now_lend_item_margin_top">1dp</dimen>
+	<dimen name="search_book_item_text_size">20sp</dimen>
 </resources>

@@ -12,6 +12,7 @@ public class IPUtil {
 	public static String lend_history = IP + "/reader/book_hist.php";
 	public static String asord_history = IP + "/reader/asord_lst.php";
 	public static String pre_book = IP + "/reader/preg.php";
+	public static String search_book = IP + "/opac/openlink.php";
 }
 
 

@@ -1,5 +1,6 @@
 package cn.myxingxing.ysulibrary.util;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,9 @@ import org.jsoup.select.Elements;
 import cn.myxingxing.ysulibrary.bean.BookAsord;
 import cn.myxingxing.ysulibrary.bean.BookHist;
 import cn.myxingxing.ysulibrary.bean.BookPreg;
+import cn.myxingxing.ysulibrary.bean.Lotinfo;
 import cn.myxingxing.ysulibrary.bean.NowLend;
+import cn.myxingxing.ysulibrary.bean.SearchBook;
 import cn.myxingxing.ysulibrary.config.Config;
 import cn.myxingxing.ysulibrary.event.YsuEvent;
 
@@ -172,5 +175,65 @@ public class ParseLibrary {
 			return null;
 		}
 		return pregs;
+	}
+	
+	/**
+	 * @author myxingxing
+	 * @param result 字符串类型的网页
+	 * @return 检索的图书信息
+	 */
+	public static List<SearchBook> getSearchBooks(String reslut){
+		Document doc = Jsoup.parse(reslut);
+		List<SearchBook> searchBookBeans = new ArrayList<SearchBook>();
+		try {
+			Elements eles = doc.getElementsByClass("book_list_info");
+			for (Element e : eles) {
+				SearchBook searchBookBean = new SearchBook();
+				searchBookBean.setType(e.getElementsByTag("span").get(0).text());
+				searchBookBean.setName(e.getElementsByTag("a").get(0).text());
+				searchBookBean.setBook_url(e.getElementsByTag("a").attr("href"));
+				searchBookBean.setIsbn(e.getElementsByTag("h3").get(0).childNode(2).toString());
+				searchBookBean.setType(e.getElementsByTag("span").get(0).text());
+				String s=e.getElementsByTag("p").get(0).childNode(4).toString();
+				searchBookBean.setPublish(s.substring(0,s.length()-11)+" "+s.substring(s.length()-5, s.length()));
+				searchBookBean.setSave_num(e.getElementsByTag("span").get(1).childNode(0).toString());
+				searchBookBean.setNow_num(e.getElementsByTag("span").get(1).childNode(2).toString());
+				searchBookBean.setAuther(e.getElementsByTag("p").get(0).childNode(2).toString());
+				searchBookBeans.add(searchBookBean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return searchBookBeans;
+	}
+	
+	/**
+	 * @author myxingxing
+	 * @param result 字符串类型的网页
+	 * @return 检索的图书信息
+	 */
+	public static List<Lotinfo> getLoctionBooks(String result){
+		List<Lotinfo> list = new ArrayList<Lotinfo>();
+		Document doc = Jsoup.parse(result);
+		try {
+			Elements infolist = doc.getElementsByClass("whitetext");
+			if (infolist.size() == 0) {
+				return null;
+			} else {
+				for (int i = 0; i < infolist.size(); i++) {
+					Lotinfo location = new Lotinfo();
+					location.setIsbn(infolist.get(i).getElementsByTag("td").get(0).text());
+					location.setNumber(infolist.get(i).getElementsByTag("td").get(1).text());
+					location.setYear(infolist.get(i).getElementsByTag("td").get(2).text());
+					location.setLocal(infolist.get(i).getElementsByTag("td").get(3).text());
+					location.setNow(infolist.get(i).getElementsByTag("td").get(4).text());
+					list.add(location);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

@@ -18,4 +18,11 @@ public class Config {
 	public static final int PRE_BOOK_SUCCESS = 13;
 	public static final int PRE_BOOK_FAILED = 14;
 	public static final int PRE_BOOK_EMPTY = 15;
+	public static final int SEARCH_BOOK_SUCCESS = 16;
+	public static final int SEARCH_BOOK_EMPTY = 17;
+	public static final int SEARCH_BOOK_FAILED = 18;
+	public static final int DETAIL_SUCCESS = 19;
+	public static final int DETAIL_FAILED = 20;
+	public static final int DETAIL_EMPTY = 21;
+	
 }
