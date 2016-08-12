@@ -1,6 +1,7 @@
 package cn.myxingxing.ysulibrary.fragment;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -51,13 +53,13 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 	
 	private int mScreenWidth;
 	private int page = 1;
-	private LinearLayout ly_no_data;
+	private LinearLayout ly_no_data,layout_book_search;
 	private TextView tv_title;
 	private Spinner first_spinner;
 	private EditText et_book_name;
 	private XListView lv_book;
 	private TextView tv_no;
-	private RelativeLayout ly_progress,layout_action;
+	private RelativeLayout ly_progress;
 	private PopupWindow morePop;
 	private String strSearchType;
 	private List<SearchBook> searchBookList;
@@ -101,12 +103,13 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 		lv_book = (XListView)view.findViewById(R.id.lv_book);
 		tv_no = (TextView)view.findViewById(R.id.tv_no);
 		ly_progress = (RelativeLayout)view.findViewById(R.id.ly_progress);
-		layout_action = (RelativeLayout)view.findViewById(R.id.layout_action);
+		layout_book_search = (LinearLayout)view.findViewById(R.id.layout_book_search);
 		
 		String[] firstsp = getResources().getStringArray(R.array.titlespinner);
 		ArrayAdapter<String> firstAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,firstsp);
 		first_spinner.setAdapter(firstAdapter);	
 		first_spinner.setOnItemSelectedListener(this);	
+		initXlistView();
 	}
  
 	@Subscribe(threadMode = ThreadMode.MAIN)
@@ -122,7 +125,17 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 		case Config.SEARCH_BOOK_SUCCESS:
 			searchBookAdapter = new SearchBookAdapter(searchBookList, ct);
 			showSuccessView();
+			lv_book.stopRefresh();
 			lv_book.setAdapter(searchBookAdapter);
+			break;
+		case Config.SEARCH_LOAD_EMPTY:
+			ShowToast("已无更多数据");
+			lv_book.stopLoadMore();
+			ly_progress.setVisibility(View.GONE);
+			break;
+		case Config.SEARCH_LOAD_MORE_SUCCRESS:
+			lv_book.stopLoadMore();
+			searchBookAdapter.notifyDataSetChanged();
 			break;
 		default:
 			break;
@@ -151,6 +164,43 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 			break;
 		}
 	}
+	
+	private void searchLoadMore(){
+		ly_progress.setVisibility(View.VISIBLE);
+		ly_no_data.setVisibility(View.GONE);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("strSearchType", strSearchType);
+		map.put("match_flag", "forward");
+		map.put("historyCount", "1");
+		map.put("strText", et_book_name.getText().toString());
+		map.put("doctype", "ALL");//图书种类
+		map.put("displaypg", "20");//默认20本
+		map.put("showmode", "list");
+		map.put("sort", "CATA_DATE");
+		map.put("orderby", "desc");
+		map.put("location", "ALL");
+		map.put("page", page+"");
+		OkHttpUtil.enqueue(IPUtil.search_book, map, new YsuCallback(ct){
+			@Override
+			public void onSuccess(String result) throws IOException {
+				super.onSuccess(result);
+				List<SearchBook> list = ParseLibrary.getSearchBooks(result);
+				if (list == null) {
+					EventBus.getDefault().post(new SearchBookEvent(Config.SEARCH_BOOK_FAILED));
+				}else if (list.size() != 0) {
+					EventBus.getDefault().post(new SearchBookEvent(Config.SEARCH_LOAD_EMPTY));
+				}else {
+					searchBookList.addAll(list);
+					EventBus.getDefault().post(new SearchBookEvent(Config.SEARCH_LOAD_MORE_SUCCRESS));
+				}
+			}
+
+			@Override
+			public void onFailure(String error) throws IOException {
+				super.onFailure(error);
+			}
+		});
+	} 
 	
 	private void searchBook() {
 		if (TextUtils.isEmpty(et_book_name.getText().toString())) {
@@ -200,18 +250,21 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 			tv_title.setTag("热门借阅");
 			LISTVIEW_TAG = LV_HOT;
 			lv_book.setOnItemClickListener(this);
+			layout_book_search.setVisibility(View.GONE);
 			break;
 		case R.id.btn_layout_new_book:
 			tv_title.setText("新书通报");
 			tv_title.setTag("新书通报");
 			LISTVIEW_TAG = LV_NEW;
-			lv_book.setOnClickListener(this);
+			layout_book_search.setVisibility(View.GONE);
+			lv_book.setOnItemClickListener(this);
 			break;
 		case R.id.btn_layout_book_search:
 			tv_title.setText("检索");
 			tv_title.setText("检索");
 			LISTVIEW_TAG = LV_SEARCH;
-			lv_book.setOnClickListener(this);
+			layout_book_search.setVisibility(View.VISIBLE);
+			lv_book.setOnItemClickListener(this);
 			break;
 		default:
 			break;
@@ -254,7 +307,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 		morePop.setOutsideTouchable(true);
 		morePop.setBackgroundDrawable(new BitmapDrawable());
 		morePop.setAnimationStyle(R.style.MenuPop);
-		morePop.showAsDropDown(layout_action, 0, -dip2px(ct, 2.0F));
+		morePop.showAsDropDown(layout_book_search, 0, -dip2px(ct, 2.0F));
 	}
 	
 	@Override
@@ -282,12 +335,15 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 		lv_book.setXListViewListener(new IXListViewListener() {
 			@Override
 			public void onRefresh() {
-				
+				searchBookList = new ArrayList<SearchBook>();
+				page = 1;
+				searchBook();
 			}
 			
 			@Override
 			public void onLoadMore() {
-				
+				page++;
+				searchLoadMore();
 			}
 		});
 	}
