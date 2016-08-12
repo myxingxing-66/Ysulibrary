@@ -43,6 +43,7 @@ import cn.myxingxing.ysulibrary.net.OkHttpUtil;
 import cn.myxingxing.ysulibrary.net.YsuCallback;
 import cn.myxingxing.ysulibrary.util.ParseLibrary;
 import cn.myxingxing.ysulibrary.view.xlist.XListView;
+import cn.myxingxing.ysulibrary.view.xlist.XListView.IXListViewListener;
 
 import com.example.ysulibrary.R;
 
@@ -274,7 +275,23 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 		}
 		startActivity(intent);
 	}
-
+	
+	private void initXlistView(){
+		lv_book.setPullLoadEnable(true);
+		lv_book.setPullRefreshEnable(true);
+		lv_book.setXListViewListener(new IXListViewListener() {
+			@Override
+			public void onRefresh() {
+				
+			}
+			
+			@Override
+			public void onLoadMore() {
+				
+			}
+		});
+	}
+	
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id) {
