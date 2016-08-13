@@ -35,9 +35,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.activities.BookDetailActivity;
+import cn.myxingxing.ysulibrary.adapter.NewbookAdapter;
 import cn.myxingxing.ysulibrary.adapter.NotelistAdapter;
 import cn.myxingxing.ysulibrary.adapter.SearchBookAdapter;
 import cn.myxingxing.ysulibrary.base.BaseFragment;
+import cn.myxingxing.ysulibrary.bean.NewBook;
 import cn.myxingxing.ysulibrary.bean.NoteList;
 import cn.myxingxing.ysulibrary.bean.SearchBook;
 import cn.myxingxing.ysulibrary.config.Config;
@@ -58,14 +60,15 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 	private Spinner first_spinner;
 	private EditText et_book_name;
 	private XListView lv_book;
-	private TextView tv_no;
 	private RelativeLayout ly_progress,layout_action;
 	private PopupWindow morePop;
 	private String strSearchType;
 	private List<SearchBook> searchBookList;
 	private List<NoteList> topLendList;
+	private List<NewBook> newBookList;
 	private SearchBookAdapter searchBookAdapter;
 	private NotelistAdapter topLendaAdapter;
+	private NewbookAdapter newbookAdapter;
 	private int LISTVIEW_TAG =1;
 	private static final int LV_SEARCH = 1;
 	private static final int LV_HOT = 2;
@@ -103,7 +106,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 		first_spinner = (Spinner)view.findViewById(R.id.first_spinner);
 		et_book_name = (EditText)view.findViewById(R.id.et_book_name);
 		lv_book = (XListView)view.findViewById(R.id.lv_book);
-		tv_no = (TextView)view.findViewById(R.id.tv_no);
 		ly_progress = (RelativeLayout)view.findViewById(R.id.ly_progress);
 		layout_book_search = (LinearLayout)view.findViewById(R.id.layout_book_search);
 		layout_action = (RelativeLayout)view.findViewById(R.id.layout_action);
@@ -144,7 +146,11 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 			showSuccessView();
 			topLendaAdapter = new NotelistAdapter(ct, R.layout.item_lend, topLendList);
 			lv_book.setAdapter(topLendaAdapter);
-			
+			break;
+		case Config.NEW_BOOK_SUCCESS:
+			showSuccessView();
+			newbookAdapter = new NewbookAdapter(ct, R.layout.item_new_book, newBookList);
+			lv_book.setAdapter(newbookAdapter);
 			break;
 		default:
 			break;
@@ -265,11 +271,15 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 			showHotBook();
 			break;
 		case R.id.btn_layout_new_book:
+			lv_book.setVisibility(View.GONE);
+			ly_progress.setVisibility(View.VISIBLE);
 			tv_title.setText("新书通报");
 			tv_title.setTag("新书通报");
 			LISTVIEW_TAG = LV_NEW;
 			layout_book_search.setVisibility(View.GONE);
 			lv_book.setOnItemClickListener(this);
+			page = 1;
+			showNewBook();
 			break;
 		case R.id.btn_layout_book_search:
 			tv_title.setText("检索");
@@ -283,6 +293,35 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 			break;
 		}
 		morePop.dismiss();
+	}
+	
+	private void showNewBook(){
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("back_days", "30");
+		map.put("s_doctype", "ALL");
+		map.put("loca_code", "ALL");
+		map.put("cls", "ALL");
+		map.put("clsname", "全部新书");
+		map.put("page", page + "");
+		OkHttpUtil.enqueue(IPUtil.new_book, map, new YsuCallback(ct){
+			@Override
+			public void onSuccess(String result) throws IOException {
+				super.onSuccess(result);
+				newBookList = ParseLibrary.getNewBooks(result);
+				if (newBookList == null) {
+					EventBus.getDefault().post(new SearchBookEvent(Config.SEARCH_BOOK_FAILED));
+				}else if (newBookList.size() == 0) {
+					EventBus.getDefault().post(new SearchBookEvent(Config.SEARCH_LOAD_EMPTY));
+				}else {
+					EventBus.getDefault().post(new SearchBookEvent(Config.NEW_BOOK_SUCCESS));
+				}
+			}
+
+			@Override
+			public void onFailure(String error) throws IOException {
+				super.onFailure(error);
+			}
+		});
 	}
 	
 	private void showHotBook(){
@@ -352,10 +391,10 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 			intent.putExtra("detailUrl", searchBookList.get(position-1).getBook_url().toString());
 			break;
 		case LV_NEW:
-			
+			intent.putExtra("detailUrl", topLendList.get(position-1).getBookhref().toString());
 			break;
 		case LV_HOT:
-			
+			intent.putExtra("detailUrl", newBookList.get(position-1).getDetailUrl().toString());
 			break;
 		default:
 			break;

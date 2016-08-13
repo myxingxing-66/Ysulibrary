@@ -13,6 +13,7 @@ import cn.myxingxing.ysulibrary.bean.BookAsord;
 import cn.myxingxing.ysulibrary.bean.BookHist;
 import cn.myxingxing.ysulibrary.bean.BookPreg;
 import cn.myxingxing.ysulibrary.bean.Lotinfo;
+import cn.myxingxing.ysulibrary.bean.NewBook;
 import cn.myxingxing.ysulibrary.bean.NoteList;
 import cn.myxingxing.ysulibrary.bean.NowLend;
 import cn.myxingxing.ysulibrary.bean.SearchBook;
@@ -211,7 +212,7 @@ public class ParseLibrary {
 	/**
 	 * @author myxingxing
 	 * @param result 字符串类型的网页
-	 * @return 检索的图书信息
+	 * @return 馆藏信息
 	 */
 	public static List<Lotinfo> getLoctionBooks(String result){
 		List<Lotinfo> list = new ArrayList<Lotinfo>();
@@ -240,7 +241,7 @@ public class ParseLibrary {
 	/**
 	 * @author myxingxing
 	 * @param result 字符串类型的网页
-	 * @return 检索的图书信息
+	 * @return 热门借阅
 	 */
 	public static List<NoteList> getTopLendBooks(String result){
 		List<NoteList> list = new ArrayList<NoteList>();
@@ -260,6 +261,30 @@ public class ParseLibrary {
 				notetr.setSav_num(notetd.get(5).text().toString());
 				notetr.setLend_num(notetd.get(6).text().toString());
 				list.add(notetr);
+			}
+		} catch (Exception e) {
+			return null;
+		}
+		return list;
+	}
+	
+	/**
+	 * @author myxingxing
+	 * @param result 字符串类型的网页
+	 * @return 新书通报
+	 */
+	public static List<NewBook> getNewBooks(String result){
+		List<NewBook> list = new ArrayList<NewBook>();
+		Document doc = Jsoup.parse(result);
+		try {
+			Elements listbook=doc.getElementsByClass("list_books");
+			for(int i=0;i<listbook.size();i++){
+				NewBook newbook=new NewBook();
+				newbook.setName(listbook.get(i).getElementsByTag("a").text().toString());
+				newbook.setDetailUrl(listbook.get(i).getElementsByTag("a").attr("href").substring(2, 35).toString());
+				newbook.setIsbn(listbook.get(i).getElementsByTag("h3").get(0).childNode(1).toString());
+				newbook.setInfo(listbook.get(i).getElementsByTag("p").get(0).childNode(2).toString());
+				list.add(newbook);
 			}
 		} catch (Exception e) {
 			return null;

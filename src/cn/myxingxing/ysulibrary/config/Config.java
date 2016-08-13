@@ -27,5 +27,5 @@ public class Config {
 	public static final int SEARCH_LOAD_MORE_SUCCRESS = 22;
 	public static final int SEARCH_LOAD_EMPTY = 23;
 	public static final int TOP_LEND_SUCCESS =24;
-	
+	public static final int NEW_BOOK_SUCCESS = 25;
 }
