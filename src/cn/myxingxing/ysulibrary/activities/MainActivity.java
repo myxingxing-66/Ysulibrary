@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.base.BaseActivity;
 import cn.myxingxing.ysulibrary.base.BaseFragment;
 import cn.myxingxing.ysulibrary.fragment.HomeFragment;
 import cn.myxingxing.ysulibrary.fragment.MsgFragment;
 import cn.myxingxing.ysulibrary.fragment.MyFragment;
-
-import com.example.ysulibrary.R;
 
 public class MainActivity extends BaseActivity {
 	

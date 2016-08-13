@@ -12,8 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.example.ysulibrary.R;
+import cn.myxingxing.ysulibrary.R;
 
 
 public class XListViewHeader extends LinearLayout{

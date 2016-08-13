@@ -10,6 +10,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import android.os.Bundle;
+import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.adapter.AsordAdapter;
 import cn.myxingxing.ysulibrary.base.BaseActivity;
 import cn.myxingxing.ysulibrary.bean.BookAsord;
@@ -21,8 +22,6 @@ import cn.myxingxing.ysulibrary.net.YsuCallback;
 import cn.myxingxing.ysulibrary.util.ParseLibrary;
 import cn.myxingxing.ysulibrary.view.xlist.XListView;
 import cn.myxingxing.ysulibrary.view.xlist.XListView.IXListViewListener;
-
-import com.example.ysulibrary.R;
 
 public class AsordHistoryActivity extends BaseActivity {
 	

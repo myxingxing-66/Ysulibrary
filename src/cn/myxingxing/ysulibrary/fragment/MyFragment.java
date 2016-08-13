@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.activities.AsordHistoryActivity;
 import cn.myxingxing.ysulibrary.activities.LendHistoryActivity;
 import cn.myxingxing.ysulibrary.activities.LoginActivity;
@@ -27,8 +28,6 @@ import cn.myxingxing.ysulibrary.net.IPUtil;
 import cn.myxingxing.ysulibrary.net.OkHttpUtil;
 import cn.myxingxing.ysulibrary.net.YsuCallback;
 import cn.myxingxing.ysulibrary.util.SingleManager;
-
-import com.example.ysulibrary.R;
 
 public class MyFragment extends BaseFragment implements OnClickListener{
 	

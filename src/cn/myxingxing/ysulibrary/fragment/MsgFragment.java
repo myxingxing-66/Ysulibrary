@@ -2,9 +2,8 @@ package cn.myxingxing.ysulibrary.fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.base.BaseFragment;
-
-import com.example.ysulibrary.R;
 
 public class MsgFragment extends BaseFragment{
 

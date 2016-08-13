@@ -12,8 +12,7 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Scroller;
-
-import com.example.ysulibrary.R;
+import cn.myxingxing.ysulibrary.R;
 
 
 //单个的下拉刷新控件

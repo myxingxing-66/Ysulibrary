@@ -8,9 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.bean.Lotinfo;
-
-import com.example.ysulibrary.R;
 
 public class LocationAdapter extends ArrayAdapter<Lotinfo> {
 	

@@ -6,8 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.example.ysulibrary.R;
+import cn.myxingxing.ysulibrary.R;
 
 
 public class XListViewFooter extends LinearLayout{

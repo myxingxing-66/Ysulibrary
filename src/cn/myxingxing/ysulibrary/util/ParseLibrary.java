@@ -1,6 +1,5 @@
 package cn.myxingxing.ysulibrary.util;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import cn.myxingxing.ysulibrary.bean.BookAsord;
 import cn.myxingxing.ysulibrary.bean.BookHist;
 import cn.myxingxing.ysulibrary.bean.BookPreg;
 import cn.myxingxing.ysulibrary.bean.Lotinfo;
+import cn.myxingxing.ysulibrary.bean.NoteList;
 import cn.myxingxing.ysulibrary.bean.NowLend;
 import cn.myxingxing.ysulibrary.bean.SearchBook;
 import cn.myxingxing.ysulibrary.config.Config;
@@ -233,6 +233,36 @@ public class ParseLibrary {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	/**
+	 * @author myxingxing
+	 * @param result 字符串类型的网页
+	 * @return 检索的图书信息
+	 */
+	public static List<NoteList> getTopLendBooks(String result){
+		List<NoteList> list = new ArrayList<NoteList>();
+		Document doc = Jsoup.parse(result);
+		try {
+			Elements note=doc.getElementsByClass("table_line");
+			Elements note_tr=note.get(0).getElementsByTag("tr");
+			for(int i=1;i<note_tr.size();i++){
+				NoteList notetr=new NoteList();
+				Elements notetd=note_tr.get(i).getElementsByTag("td");
+				notetr.setNumber(notetd.get(0).text().toString());
+				notetr.setTitle(notetd.get(1).text().toString());
+				notetr.setBookhref(notetd.get(1).getElementsByTag("a").attr("href").substring(2, 35).toString());
+				notetr.setAuthor(notetd.get(2).text().toString());
+				notetr.setPublish(notetd.get(3).text().toString());
+				notetr.setIsbn(notetd.get(4).text().toString());
+				notetr.setSav_num(notetd.get(5).text().toString());
+				notetr.setLend_num(notetd.get(6).text().toString());
+				list.add(notetr);
+			}
+		} catch (Exception e) {
+			return null;
 		}
 		return list;
 	}

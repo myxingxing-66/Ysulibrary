@@ -2,10 +2,8 @@ package cn.myxingxing.ysulibrary.adapter;
 
 import java.util.List;
 
+import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.bean.BookPreg;
-
-import com.example.ysulibrary.R;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

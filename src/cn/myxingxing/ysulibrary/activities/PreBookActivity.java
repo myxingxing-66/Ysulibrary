@@ -9,6 +9,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import android.os.Bundle;
 import android.widget.ListView;
+import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.adapter.PregBookAdapter;
 import cn.myxingxing.ysulibrary.base.BaseActivity;
 import cn.myxingxing.ysulibrary.bean.BookPreg;
@@ -18,8 +19,6 @@ import cn.myxingxing.ysulibrary.net.IPUtil;
 import cn.myxingxing.ysulibrary.net.OkHttpUtil;
 import cn.myxingxing.ysulibrary.net.YsuCallback;
 import cn.myxingxing.ysulibrary.util.ParseLibrary;
-
-import com.example.ysulibrary.R;
 
 public class PreBookActivity extends BaseActivity {
 	

@@ -12,7 +12,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -34,9 +33,12 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.activities.BookDetailActivity;
+import cn.myxingxing.ysulibrary.adapter.NotelistAdapter;
 import cn.myxingxing.ysulibrary.adapter.SearchBookAdapter;
 import cn.myxingxing.ysulibrary.base.BaseFragment;
+import cn.myxingxing.ysulibrary.bean.NoteList;
 import cn.myxingxing.ysulibrary.bean.SearchBook;
 import cn.myxingxing.ysulibrary.config.Config;
 import cn.myxingxing.ysulibrary.event.SearchBookEvent;
@@ -46,8 +48,6 @@ import cn.myxingxing.ysulibrary.net.YsuCallback;
 import cn.myxingxing.ysulibrary.util.ParseLibrary;
 import cn.myxingxing.ysulibrary.view.xlist.XListView;
 import cn.myxingxing.ysulibrary.view.xlist.XListView.IXListViewListener;
-
-import com.example.ysulibrary.R;
 
 public class HomeFragment extends BaseFragment implements OnItemClickListener,OnClickListener,OnItemSelectedListener{
 	
@@ -59,11 +59,13 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 	private EditText et_book_name;
 	private XListView lv_book;
 	private TextView tv_no;
-	private RelativeLayout ly_progress;
+	private RelativeLayout ly_progress,layout_action;
 	private PopupWindow morePop;
 	private String strSearchType;
 	private List<SearchBook> searchBookList;
+	private List<NoteList> topLendList;
 	private SearchBookAdapter searchBookAdapter;
+	private NotelistAdapter topLendaAdapter;
 	private int LISTVIEW_TAG =1;
 	private static final int LV_SEARCH = 1;
 	private static final int LV_HOT = 2;
@@ -104,6 +106,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 		tv_no = (TextView)view.findViewById(R.id.tv_no);
 		ly_progress = (RelativeLayout)view.findViewById(R.id.ly_progress);
 		layout_book_search = (LinearLayout)view.findViewById(R.id.layout_book_search);
+		layout_action = (RelativeLayout)view.findViewById(R.id.layout_action);
 		
 		String[] firstsp = getResources().getStringArray(R.array.titlespinner);
 		ArrayAdapter<String> firstAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,firstsp);
@@ -136,6 +139,12 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 		case Config.SEARCH_LOAD_MORE_SUCCRESS:
 			lv_book.stopLoadMore();
 			searchBookAdapter.notifyDataSetChanged();
+			break;
+		case Config.TOP_LEND_SUCCESS:
+			showSuccessView();
+			topLendaAdapter = new NotelistAdapter(ct, R.layout.item_lend, topLendList);
+			lv_book.setAdapter(topLendaAdapter);
+			
 			break;
 		default:
 			break;
@@ -246,11 +255,14 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 	private void changeTextView(View view){
 		switch (view.getId()) {
 		case R.id.btn_hot_book:
+			lv_book.setVisibility(View.GONE);
+			layout_book_search.setVisibility(View.GONE);
 			tv_title.setText("热门借阅");
 			tv_title.setTag("热门借阅");
 			LISTVIEW_TAG = LV_HOT;
+			ly_progress.setVisibility(View.VISIBLE);
 			lv_book.setOnItemClickListener(this);
-			layout_book_search.setVisibility(View.GONE);
+			showHotBook();
 			break;
 		case R.id.btn_layout_new_book:
 			tv_title.setText("新书通报");
@@ -263,6 +275,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 			tv_title.setText("检索");
 			tv_title.setText("检索");
 			LISTVIEW_TAG = LV_SEARCH;
+			lv_book.setVisibility(View.GONE);
 			layout_book_search.setVisibility(View.VISIBLE);
 			lv_book.setOnItemClickListener(this);
 			break;
@@ -270,6 +283,27 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 			break;
 		}
 		morePop.dismiss();
+	}
+	
+	private void showHotBook(){
+		OkHttpUtil.enqueue(IPUtil.top_lend, null, new YsuCallback(ct){
+			@Override
+			public void onSuccess(String result) throws IOException {
+				super.onSuccess(result);
+				topLendList = ParseLibrary.getTopLendBooks(result);
+				if (topLendList == null) {
+					EventBus.getDefault().post(new SearchBookEvent(Config.SEARCH_BOOK_FAILED));
+				}else if (topLendList.size() == 0) {
+					EventBus.getDefault().post(new SearchBookEvent(Config.SEARCH_BOOK_EMPTY));
+				}else {
+					EventBus.getDefault().post(new SearchBookEvent(Config.TOP_LEND_SUCCESS));
+				}
+			}
+			@Override
+			public void onFailure(String error) throws IOException {
+				super.onFailure(error);
+			}
+		});
 	}
 	
 	private void showErrorView(){
@@ -307,7 +341,7 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 		morePop.setOutsideTouchable(true);
 		morePop.setBackgroundDrawable(new BitmapDrawable());
 		morePop.setAnimationStyle(R.style.MenuPop);
-		morePop.showAsDropDown(layout_book_search, 0, -dip2px(ct, 2.0F));
+		morePop.showAsDropDown(layout_action, 0, -dip2px(ct, 2.0F));
 	}
 	
 	@Override

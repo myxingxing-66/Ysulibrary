@@ -20,14 +20,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.base.BaseActivity;
 import cn.myxingxing.ysulibrary.event.LoginSucceedEvent;
 import cn.myxingxing.ysulibrary.net.IPUtil;
 import cn.myxingxing.ysulibrary.net.OkHttpUtil;
 import cn.myxingxing.ysulibrary.net.YsuCallback;
 import cn.myxingxing.ysulibrary.util.SingleManager;
-
-import com.example.ysulibrary.R;
 
 public class LoginActivity extends BaseActivity {
 	

@@ -10,17 +10,15 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import android.os.Bundle;
 import android.widget.ListView;
+import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.adapter.LocationAdapter;
 import cn.myxingxing.ysulibrary.base.BaseActivity;
 import cn.myxingxing.ysulibrary.bean.Lotinfo;
 import cn.myxingxing.ysulibrary.config.Config;
 import cn.myxingxing.ysulibrary.event.BookDetailEvent;
-import cn.myxingxing.ysulibrary.event.SearchBookEvent;
 import cn.myxingxing.ysulibrary.net.OkHttpUtil;
 import cn.myxingxing.ysulibrary.net.YsuCallback;
 import cn.myxingxing.ysulibrary.util.ParseLibrary;
-
-import com.example.ysulibrary.R;
 
 public class BookDetailActivity extends BaseActivity {
 	
@@ -44,7 +42,7 @@ public class BookDetailActivity extends BaseActivity {
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
-	public void onUserEvent(SearchBookEvent event) {
+	public void onUserEvent(BookDetailEvent event) {
 		switch (event.getInfo()) {
 		case Config.DETAIL_EMPTY:
 			ShowToast("ÔÝÎÞÊý¾Ý");

@@ -8,9 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.bean.BookHist;
-
-import com.example.ysulibrary.R;
 
 public class LendHistoryAdapter extends BaseAdapter {
 	
