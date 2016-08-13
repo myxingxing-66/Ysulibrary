@@ -130,16 +130,13 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 		case Config.SEARCH_BOOK_SUCCESS:
 			searchBookAdapter = new SearchBookAdapter(searchBookList, ct);
 			showSuccessView();
-			lv_book.stopRefresh();
 			lv_book.setAdapter(searchBookAdapter);
 			break;
 		case Config.SEARCH_LOAD_EMPTY:
 			ShowToast("已无更多数据");
-			lv_book.stopLoadMore();
 			ly_progress.setVisibility(View.GONE);
 			break;
 		case Config.SEARCH_LOAD_MORE_SUCCRESS:
-			lv_book.stopLoadMore();
 			searchBookAdapter.notifyDataSetChanged();
 			break;
 		case Config.TOP_LEND_SUCCESS:
@@ -155,6 +152,8 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 		default:
 			break;
 		}
+		lv_book.stopLoadMore();
+		lv_book.stopRefresh();
 	}
 	
 	@Override
@@ -408,15 +407,38 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 		lv_book.setXListViewListener(new IXListViewListener() {
 			@Override
 			public void onRefresh() {
-				searchBookList = new ArrayList<SearchBook>();
-				page = 1;
-				searchBook();
+				switch (LISTVIEW_TAG) {
+				case LV_SEARCH:
+					searchBookList = new ArrayList<SearchBook>();
+					page = 1;
+					searchBook();
+					break;
+				case LV_NEW:
+					newBookList = new ArrayList<NewBook>();
+					page = 1;
+					showNewBook();
+					break;
+				default:
+					break;
+				}
 			}
 			
 			@Override
 			public void onLoadMore() {
-				page++;
-				searchLoadMore();
+				switch (LISTVIEW_TAG) {
+				case LV_SEARCH:
+					page++;
+					searchLoadMore();
+					break;
+				case LV_NEW:
+					newBookList = new ArrayList<NewBook>();
+					page ++;
+					showNewBook();
+					break;
+				default:
+					break;
+				}
+				
 			}
 		});
 	}
