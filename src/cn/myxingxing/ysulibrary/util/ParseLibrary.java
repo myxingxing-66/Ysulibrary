@@ -14,6 +14,7 @@ import cn.myxingxing.ysulibrary.bean.BookHist;
 import cn.myxingxing.ysulibrary.bean.BookPreg;
 import cn.myxingxing.ysulibrary.bean.Lotinfo;
 import cn.myxingxing.ysulibrary.bean.NewBook;
+import cn.myxingxing.ysulibrary.bean.NewsLib;
 import cn.myxingxing.ysulibrary.bean.NoteList;
 import cn.myxingxing.ysulibrary.bean.NowLend;
 import cn.myxingxing.ysulibrary.bean.SearchBook;
@@ -291,4 +292,29 @@ public class ParseLibrary {
 		}
 		return list;
 	}
+	
+	/**
+	 * @author myxingxing
+	 * @param result 字符串类型的网页
+	 * @return 图书馆通知公告
+	 */
+	public static List<NewsLib> getNews(String result){
+		List<NewsLib> list = new ArrayList<NewsLib>();
+		Document doc = Jsoup.parse(result);
+		try {
+			Elements elementNew = doc.getElementById("ctl00_ContentPlaceHolder1_tz_nomar_td").getElementsByTag("a");
+			for (int i = 0; i < elementNew.size() ; i++) {
+				NewsLib newsLib = new NewsLib();
+				newsLib.setHref(elementNew.get(i).attr("href"));
+				newsLib.setTime(elementNew.get(i).attr("title"));
+				newsLib.setTitle(elementNew.get(i).text().toString());
+				list.add(newsLib);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return list;
+	}
+	
 }

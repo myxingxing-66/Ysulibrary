@@ -4,9 +4,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <TextView 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="消息"/>
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_action_bar_height"
+        android:background="@color/base_topbar_bg">
 
+        <TextView
+            style="@style/activity_top_bar_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="通知公告" />
+
+    </RelativeLayout>
+	
+    <cn.myxingxing.ysulibrary.view.xlist.XListView 
+        android:id="@+id/lv_news"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </cn.myxingxing.ysulibrary.view.xlist.XListView>
+    
 </LinearLayout>

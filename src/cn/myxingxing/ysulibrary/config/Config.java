@@ -2,6 +2,9 @@ package cn.myxingxing.ysulibrary.config;
 
 
 public class Config {
+	public static final int SUCCESS = 100;
+	public static final int FAILED = 101;
+	public static final int EMPTY = 102;
 	public static final int READERINFO_PARSE_ERROR = 0;//证件信息解析错误
 	public static final int READERINFO_PARSE_SUCCESS = 1;//证件信息解析成功
 	public static final int NOW_LEND_EMPTY = 2; //当前借阅为空

@@ -3,6 +3,7 @@ package cn.myxingxing.ysulibrary.net;
 
 public class IPUtil {
 	public static final String IP = "http://202.206.242.99";
+	public static final String LIBRARY = "http://library.ysu.edu.cn/";
 	public static String getCheckCode = IP + "/reader/captcha.php";
 	public static String login = IP + "/reader/redr_verify.php";
 	public static String log = IP + "/reader/login.php";
