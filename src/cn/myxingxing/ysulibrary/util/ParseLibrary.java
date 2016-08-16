@@ -317,4 +317,17 @@ public class ParseLibrary {
 		return list;
 	}
 	
+	public static String getNesDetail(String result){
+		Document document = Jsoup.parse(result);
+		Element element = null;
+		try {
+			element = document.getElementById("main");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return element.html().toString();
+	}
+	
 }
