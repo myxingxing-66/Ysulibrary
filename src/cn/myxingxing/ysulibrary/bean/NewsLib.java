@@ -1,6 +1,9 @@
 package cn.myxingxing.ysulibrary.bean;
 
-public class NewsLib {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class NewsLib implements Serializable{
 	private String title;
 	private String href;
 	private String time;

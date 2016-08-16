@@ -1,21 +1,21 @@
 package cn.myxingxing.ysulibrary.fragment;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import org.jsoup.Jsoup;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import cn.myxingxing.ysulibrary.R;
+import cn.myxingxing.ysulibrary.activities.NewsDetailActivity;
 import cn.myxingxing.ysulibrary.adapter.NewsLibrsryAdapter;
 import cn.myxingxing.ysulibrary.base.BaseFragment;
 import cn.myxingxing.ysulibrary.bean.LibraryNewsEvent;
@@ -27,7 +27,7 @@ import cn.myxingxing.ysulibrary.net.YsuCallback;
 import cn.myxingxing.ysulibrary.util.ParseLibrary;
 import cn.myxingxing.ysulibrary.view.xlist.XListView;
 
-public class MsgFragment extends BaseFragment{
+public class MsgFragment extends BaseFragment implements OnItemClickListener{
 	
 	private XListView lv_news;
 	private List<NewsLib> listNews;
@@ -92,6 +92,12 @@ public class MsgFragment extends BaseFragment{
 	@Override
 	public void initView() {
 		lv_news = (XListView)view.findViewById(R.id.lv_news);
+		lv_news.setOnItemClickListener(this);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		startActivity(new Intent(ct, NewsDetailActivity.class).putExtra("news", listNews.get(position)));
 	}
 
 }

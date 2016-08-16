@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_grey" >
-	
-    <RelativeLayout 
+    android:orientation="vertical" >
+    
+	<RelativeLayout 
         android:layout_width="match_parent"
         android:layout_height="@dimen/base_action_bar_height"
         android:background="@color/base_topbar_bg">
@@ -14,14 +13,17 @@
             style="@style/activity_top_bar_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="证件信息" />
+            android:text="通知公告" />
 
     </RelativeLayout>
-	
-    <ListView 
-        android:id="@+id/lv_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </ListView>
     
+    <ScrollView 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <WebView 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/wv_news_detail"/>
+    </ScrollView>
+	
 </LinearLayout>
