@@ -11,6 +11,7 @@
         android:background="@color/base_topbar_bg" >
 		
         <ImageButton 
+            android:id="@+id/btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_back"

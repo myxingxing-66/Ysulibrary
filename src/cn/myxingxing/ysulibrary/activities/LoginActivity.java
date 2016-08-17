@@ -9,6 +9,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.jsoup.Jsoup;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -35,6 +36,8 @@ public class LoginActivity extends BaseActivity {
 	private ImageView imv_checkcode;
 	private CheckBox cb_rember;
 	private Bitmap bmp;
+	private SharedPreferences pref;
+	private SharedPreferences.Editor editor;
 	
 	public static final int SHOW_CHECKCODE = 0;
 	public static final int LOGIN_ERROR = 1;
@@ -62,7 +65,6 @@ public class LoginActivity extends BaseActivity {
 		EventBus.getDefault().register(this);
 		initView();
 		initData();
-		
 	}
 
 	@Override
@@ -76,6 +78,8 @@ public class LoginActivity extends BaseActivity {
 	public void onUserEvent(LoginSucceedEvent event) {
 		if (!event.isLoged()) {
 			ShowToast("账号或密码错误");
+			et_number.setText("");
+			et_passwd.setText("");
 		}
 	}
 
@@ -94,6 +98,8 @@ public class LoginActivity extends BaseActivity {
 			public void onClick(View v) {
 				if (TextUtils.isEmpty(et_number.getText().toString().trim())) {
 					ShowToast("请输入学号");
+				}else if (TextUtils.isEmpty(et_check.getText().toString().trim())) {
+					ShowToast("验证码不能为空");
 				}else if (TextUtils.isEmpty(et_passwd.getText().toString().trim())) {
 					ShowToast("请输入密码");
 				}else {
@@ -113,7 +119,6 @@ public class LoginActivity extends BaseActivity {
 									EventBus.getDefault().post(new LoginSucceedEvent(false));
 								}else {
 									String name = Jsoup.parse(result).getElementById("header_opac").getElementsByTag("font").text();
-									System.out.println("name is " + name);
 									SingleManager.getInstance().getCurrentUser().setName(name);
 									SingleManager.getInstance().getCurrentUser().setNumber(et_number.getText().toString().trim());
 									SingleManager.getInstance().getCurrentUser().setPassword(et_passwd.getText().toString().trim());
@@ -130,10 +135,8 @@ public class LoginActivity extends BaseActivity {
 						public void onFailure(String error) throws IOException {
 							super.onFailure(error);
 						}
-						
 					});
 				}
-				
 			}
 		});
 	}
