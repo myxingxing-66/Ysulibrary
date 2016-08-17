@@ -2,10 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    <TextView 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/back"/>
-
+    android:orientation="vertical"
+    android:background="@color/bg_grey" >
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_action_bar_height"
+        android:background="@color/base_topbar_bg" >
+		
+        <ImageButton 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_back"
+            android:layout_centerVertical="true"/>
+        
+        <TextView
+            style="@style/activity_top_bar_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="意见反馈" />
+    </RelativeLayout>
+	
+    <EditText 
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="100dp"
+        android:lines="5"
+        android:hint="说点什么吧..."
+        android:background="@color/white"/>
+    
+    <Button 
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_login_selector"
+        android:textColor="@color/white"
+        android:text="反馈"/>
+    
 </LinearLayout>
