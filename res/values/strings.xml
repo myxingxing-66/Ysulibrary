@@ -26,6 +26,7 @@
 	<string name="notice">通知公告</string>
 	<string name="search">检索</string>
 	<string name="my_center">个人</string>
+	<string name="back">&lt;</string>
 	<string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>
     <string name="xlistview_header_hint_loading">正在加载&#8230;</string>

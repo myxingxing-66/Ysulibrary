@@ -55,14 +55,12 @@ public class MyFragment extends BaseFragment implements OnClickListener{
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onUserEvent(LoginSucceedEvent loginSucceedEvent){
 		if (loginSucceedEvent.isLoged()) {
-			System.out.println("接受到登陆的消息"); 
 			ly_have_login.setVisibility(View.VISIBLE);
 			tv_to_login.setVisibility(View.GONE);
 			imv_to_login.setVisibility(View.GONE);
 			ly_my_login.setClickable(false);
 			tv_name.setText(SingleManager.getInstance().getCurrentUser().getName());
 			tv_number.setText("学号:" + SingleManager.getInstance().getCurrentUser().getNumber());
-			System.out.println("执行完毕");
 		}else {
 			ly_have_login.setVisibility(View.GONE);
 			tv_to_login.setVisibility(View.VISIBLE);
@@ -78,74 +76,47 @@ public class MyFragment extends BaseFragment implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.ly_my_login:
-			if (SingleManager.getInstance().getCurrentUser().isLogined()) {
-				
-			}else {
+		if (SingleManager.getInstance().getCurrentUser().isLogined()) {
+			switch (v.getId()) {
+			case R.id.ly_my_login:
+				ShowToast("已登陆");
+				break;
+			case R.id.ly_logout:
+				OkHttpUtil.enqueue(IPUtil.logout, null, new YsuCallback(ct){
+					@Override
+					public void onSuccess(String result) throws IOException {
+						SingleManager.getInstance().getCurrentUser().setLogined(false);
+						EventBus.getDefault().post(new LoginSucceedEvent(false));
+					}
+					@Override
+					public void onFailure(String error) throws IOException {
+						super.onFailure(error);
+					}
+				});
+				break;
+			case R.id.ly_my_information:
+				startActivity(new Intent(ct, ReaderInfoActivity.class));
+				break;
+			case R.id.ly_now_lend:
+				startActivity(new Intent(ct, NowLendActivity.class));
+				break;
+			case R.id.ly_lend_history:
+				startActivity(new Intent(ct, LendHistoryActivity.class));
+				break;
+			case R.id.lv_asord_history:
+				startActivity(new Intent(ct, AsordHistoryActivity.class));
+				break;
+			case R.id.lv_pre_book:
+				startActivity(new Intent(ct, PreBookActivity.class));
+			default:
+				break;
+			}
+		}else {
+			if (v.getId() != R.id.ly_logout) {
 				startActivity(new Intent(ct, LoginActivity.class));
 			}
-			break;
-		case R.id.ly_logout:
-			OkHttpUtil.enqueue(IPUtil.logout, null, new YsuCallback(ct){
-				@Override
-				public void onSuccess(String result) throws IOException {
-					super.onSuccess(result);
-					System.out.println("退出登录");
-					SingleManager.getInstance().getCurrentUser().setLogined(false);
-					EventBus.getDefault().post(new LoginSucceedEvent(false));
-				}
-				@Override
-				public void onFailure(String error) throws IOException {
-					super.onFailure(error);
-				}
-			});
-			break;
-		case R.id.ly_my_information:
-			if (SingleManager.getInstance().getCurrentUser().isLogined()) {
-				startActivity(new Intent(ct, ReaderInfoActivity.class));
-			}
-			break;
-		case R.id.ly_now_lend:
-			if (SingleManager.getInstance().getCurrentUser().isLogined()) {
-				startActivity(new Intent(ct, NowLendActivity.class));
-			}
-			break;
-		case R.id.ly_lend_history:
-			if (SingleManager.getInstance().getCurrentUser().isLogined()) {
-				startActivity(new Intent(ct, LendHistoryActivity.class));
-			}
-			break;
-		case R.id.lv_asord_history:
-			if (isLogined()) {
-				startActivity(new Intent(ct, AsordHistoryActivity.class));
-			}
-			break;
-		case R.id.lv_pre_book:
-			if (isLogined()) {
-				startActivity(new Intent(ct, PreBookActivity.class));
-			}
-			break;
-		default:
-			break;
 		}
 	}
-	
-//	private void changeLogin(){
-//		if (SingleManager.getInstance().getCurrentUser().isLogined()) {
-//			ly_have_login.setVisibility(View.VISIBLE);
-//			tv_to_login.setVisibility(View.GONE);
-//			tv_name.setText(SingleManager.getInstance().getCurrentUser().getName());
-//			tv_number.setText("学号:"+ SingleManager.getInstance().getCurrentUser().getNumber());
-//			imv_to_login.setVisibility(View.GONE);
-//			ly_my_login.setClickable(false);
-//		}else {
-//			ly_have_login.setVisibility(View.GONE);
-//			tv_to_login.setVisibility(View.VISIBLE);
-//			ly_my_login.setClickable(true);
-//			imv_to_login.setVisibility(View.VISIBLE);
-//		}
-//	}
 
 	@Override
 	public void initView() {

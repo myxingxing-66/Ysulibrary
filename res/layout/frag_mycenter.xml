@@ -2,349 +2,439 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_grey" >
-    
-    <RelativeLayout 
+    android:background="@color/bg_grey"
+    android:orientation="vertical" >
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/base_action_bar_height"
-        android:background="@color/base_topbar_bg">
+        android:background="@color/base_topbar_bg" >
 
         <TextView
             style="@style/activity_top_bar_title_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="个人" />
-
     </RelativeLayout>
-    
-    <View 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
         android:layout_marginTop="15dp"
+        android:background="@drawable/base_horization_line" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@drawable/base_horization_line"/>
-    
-    <LinearLayout 
-        android:id="@+id/ly_my_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:clickable="true"
-		android:focusable="true"
-        android:background="@color/my_center_item_bg">
-        <ImageView 
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:scaleType="fitXY"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="@dimen/base_margin_side"
-            android:src="@drawable/default_head"/>
-        <LinearLayout 
-            android:id="@+id/ly_have_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/base_margin_side"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical"
-            android:visibility="gone">
-            <TextView 
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_grey"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/ly_my_login"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="李星"/>
-            <TextView 
-                android:id="@+id/tv_number"
-                android:layout_width="wrap_content"
+                android:background="@color/my_center_item_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="@dimen/base_margin_side"
+                    android:layout_marginTop="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/default_head" />
+
+                <LinearLayout
+                    android:id="@+id/ly_have_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/base_margin_side"
+                    android:orientation="vertical"
+                    android:visibility="gone" >
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="李星"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/tv_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="学号:130120010082" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_to_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/base_margin_side"
+                    android:text="点击登录"
+                    android:textSize="20sp" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:id="@+id/imv_to_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/base_margin_side"
+                        android:src="@drawable/into_more" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/base_horization_line" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/base_horization_line" />
+
+            <LinearLayout
+                android:id="@+id/ly_my_information"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="学号:130120010082"/>
+                android:background="@color/my_center_item_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    style="@style/my_center_icon"
+                    android:layout_width="@dimen/my_center_icon_side"
+                    android:layout_height="@dimen/my_center_icon_side"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/information" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/my_center_text_margin_left"
+                    android:text="证件信息"
+                    android:textSize="@dimen/my_center_text_size" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/my_center_item_height"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/base_margin_side"
+                        android:src="@drawable/into_more" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/base_margin_side"
+                android:background="@drawable/base_horization_line" />
+
+            <LinearLayout
+                android:id="@+id/ly_now_lend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/my_center_item_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    style="@style/my_center_icon"
+                    android:layout_width="@dimen/my_center_icon_side"
+                    android:layout_height="@dimen/my_center_icon_side"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/now" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/my_center_text_margin_left"
+                    android:text="当前借阅"
+                    android:textSize="@dimen/my_center_text_size" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/my_center_item_height"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/base_margin_side"
+                        android:src="@drawable/into_more" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/base_margin_side"
+                android:background="@drawable/base_horization_line" />
+
+            <LinearLayout
+                android:id="@+id/ly_lend_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/my_center_item_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    style="@style/my_center_icon"
+                    android:layout_width="@dimen/my_center_icon_side"
+                    android:layout_height="@dimen/my_center_icon_side"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/history" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/my_center_text_margin_left"
+                    android:text="借阅历史"
+                    android:textSize="@dimen/my_center_text_size" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/my_center_item_height"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/base_margin_side"
+                        android:src="@drawable/into_more" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/base_margin_side"
+                android:background="@drawable/base_horization_line" />
+
+            <LinearLayout
+                android:id="@+id/ly_recom_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/my_center_item_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    style="@style/my_center_icon"
+                    android:layout_width="@dimen/my_center_icon_side"
+                    android:layout_height="@dimen/my_center_icon_side"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/recommend" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/my_center_text_margin_left"
+                    android:text="荐购历史"
+                    android:textSize="@dimen/my_center_text_size" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/my_center_item_height"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/base_margin_side"
+                        android:src="@drawable/into_more" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/base_margin_side"
+                android:background="@drawable/base_horization_line" />
+
+            <LinearLayout
+                android:id="@+id/ly_appointment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/my_center_item_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    style="@style/my_center_icon"
+                    android:layout_width="@dimen/my_center_icon_side"
+                    android:layout_height="@dimen/my_center_icon_side"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/appointment" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/my_center_text_margin_left"
+                    android:text="预约信息"
+                    android:textSize="@dimen/my_center_text_size" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/my_center_item_height"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/base_margin_side"
+                        android:src="@drawable/into_more" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/base_horization_line" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/base_horization_line" />
+
+            <LinearLayout
+                android:id="@+id/ly_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/my_center_item_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    style="@style/my_center_icon"
+                    android:layout_width="@dimen/my_center_icon_side"
+                    android:layout_height="@dimen/my_center_icon_side"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/logout" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/my_center_text_margin_left"
+                    android:text="退出登录"
+                    android:textSize="@dimen/my_center_text_size" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/my_center_item_height"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/base_margin_side"
+                        android:src="@drawable/into_more" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/base_horization_line" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/base_horization_line" />
+
+            <LinearLayout
+                android:id="@+id/ly_suggestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/my_center_item_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    style="@style/my_center_icon"
+                    android:layout_width="@dimen/my_center_icon_side"
+                    android:layout_height="@dimen/my_center_icon_side"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/suggestion" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/my_center_text_margin_left"
+                    android:text="意见反馈"
+                    android:textSize="@dimen/my_center_text_size" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/my_center_item_height"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/base_margin_side"
+                        android:src="@drawable/into_more" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@drawable/base_horization_line" />
         </LinearLayout>
-        
-        <TextView 
-            android:id="@+id/tv_to_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/base_margin_side"
-            android:text="点击登录"/>
-        
-        <RelativeLayout 
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
-            <ImageView 
-                android:id="@+id/imv_to_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/base_margin_side"
-                android:src="@drawable/into_more"/>
-        </RelativeLayout>
-    </LinearLayout>
-    
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@drawable/base_horization_line"/>
-    
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginTop="18dp"
-        android:background="@drawable/base_horization_line"/>
-	
-    <LinearLayout 
-        android:id="@+id/ly_my_information"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:clickable="true"
-		android:focusable="true"
-        android:background="@color/my_center_item_bg">
-        <ImageView
-            style="@style/my_center_icon"
-            android:layout_width="@dimen/my_center_icon_side"
-            android:layout_height="@dimen/my_center_icon_side"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/information" />
-		<TextView 
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_gravity="center_vertical"
-		    android:layout_marginLeft="@dimen/my_center_text_margin_left"
-		    android:textSize="@dimen/my_center_text_size"
-		    android:text="证件信息"/>
-		<RelativeLayout 
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/my_center_item_height">
-            <ImageView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/base_margin_side"
-                android:src="@drawable/into_more"/>
-        </RelativeLayout>
-    </LinearLayout>
-    
-    <View 
-        android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/base_margin_side"
-        android:layout_height="1px"
-        android:background="@drawable/base_horization_line"/>
-    
-    <LinearLayout 
-        android:id="@+id/ly_now_lend"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:clickable="true"
-		android:focusable="true"
-        android:background="@color/my_center_item_bg">
-        <ImageView
-            style="@style/my_center_icon"
-            android:layout_width="@dimen/my_center_icon_side"
-            android:layout_height="@dimen/my_center_icon_side"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/now" />
-		<TextView 
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_gravity="center_vertical"
-		    android:layout_marginLeft="@dimen/my_center_text_margin_left"
-		    android:textSize="@dimen/my_center_text_size"
-		    android:text="当前借阅"/>
-		<RelativeLayout 
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/my_center_item_height" >
-            <ImageView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/base_margin_side"
-                android:src="@drawable/into_more"/>
-        </RelativeLayout>
-    </LinearLayout>
-    
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginLeft="@dimen/base_margin_side"
-        android:background="@drawable/base_horization_line"/>
-    
-    <LinearLayout 
-        android:id="@+id/ly_lend_history"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:clickable="true"
-		android:focusable="true"
-        android:background="@color/my_center_item_bg">
-        <ImageView
-            style="@style/my_center_icon"
-            android:layout_width="@dimen/my_center_icon_side"
-            android:layout_height="@dimen/my_center_icon_side"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/history" />
-		<TextView 
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_gravity="center_vertical"
-		    android:layout_marginLeft="@dimen/my_center_text_margin_left"
-		    android:textSize="@dimen/my_center_text_size"
-		    android:text="借阅历史"/>
-		<RelativeLayout 
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/my_center_item_height">
-            <ImageView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/base_margin_side"
-                android:src="@drawable/into_more"/>
-        </RelativeLayout>
-    </LinearLayout>
-    
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginLeft="@dimen/base_margin_side"
-        android:background="@drawable/base_horization_line"/>
-    
-    <LinearLayout 
-        android:id="@+id/ly_recom_history"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:clickable="true"
-		android:focusable="true"
-        android:background="@color/my_center_item_bg">
-        <ImageView
-            style="@style/my_center_icon"
-            android:layout_width="@dimen/my_center_icon_side"
-            android:layout_height="@dimen/my_center_icon_side"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/recommend" />
-		<TextView 
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_gravity="center_vertical"
-		    android:layout_marginLeft="@dimen/my_center_text_margin_left"
-		    android:textSize="@dimen/my_center_text_size"
-		    android:text="荐购历史"/>
-		<RelativeLayout 
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/my_center_item_height">
-            <ImageView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/base_margin_side"
-                android:src="@drawable/into_more"/>
-        </RelativeLayout>
-    </LinearLayout>
-    
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginLeft="@dimen/base_margin_side"
-        android:background="@drawable/base_horization_line"/>
-    
-    <LinearLayout
-        android:id="@+id/ly_appointment" 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:clickable="true"
-		android:focusable="true"
-        android:background="@color/my_center_item_bg">
-        <ImageView
-            style="@style/my_center_icon"
-            android:layout_width="@dimen/my_center_icon_side"
-            android:layout_height="@dimen/my_center_icon_side"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/appointment" />
-		<TextView 
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_gravity="center_vertical"
-		    android:layout_marginLeft="@dimen/my_center_text_margin_left"
-		    android:textSize="@dimen/my_center_text_size"
-		    android:text="预约信息"/>
-		<RelativeLayout 
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/my_center_item_height">
-            <ImageView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/base_margin_side"
-                android:src="@drawable/into_more"/>
-        </RelativeLayout>
-    </LinearLayout>
-    
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@drawable/base_horization_line"/>
-    
-    <View 
-        android:layout_width="match_parent"
-        android:layout_marginTop="18dp"
-        android:layout_height="1px"
-        android:background="@drawable/base_horization_line"/>
-    
-    <LinearLayout 
-        android:id="@+id/ly_logout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:clickable="true"
-		android:focusable="true"
-        android:background="@color/my_center_item_bg">
-        <ImageView
-            style="@style/my_center_icon"
-            android:layout_width="@dimen/my_center_icon_side"
-            android:layout_height="@dimen/my_center_icon_side"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/logout" />
-		<TextView 
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_gravity="center_vertical"
-		    android:textSize="@dimen/my_center_text_size"
-		    android:layout_marginLeft="@dimen/my_center_text_margin_left"
-		    android:text="退出登录"/>
-		<RelativeLayout 
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/my_center_item_height">
-            <ImageView 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/base_margin_side"
-                android:src="@drawable/into_more"/>
-        </RelativeLayout>
-    </LinearLayout>
-    
-    <View 
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@drawable/base_horization_line"/>
-    
+    </ScrollView>
+
 </LinearLayout>
