@@ -2,7 +2,6 @@ package cn.myxingxing.ysulibrary.activities;
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import cn.myxingxing.ysulibrary.R;
@@ -27,7 +26,6 @@ public class MainActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Log.d("MainActivity", "chushihua");Log.d("MainActivity", "chushihua");Log.d("MainActivity", "chushihua");Log.d("MainActivity", "chushihua");
 		rgMain = (RadioGroup)findViewById(R.id.main_group);
 		rgMain.check(currentItem);
 		initView();
@@ -37,7 +35,7 @@ public class MainActivity extends BaseActivity {
 
 	@Override 
 	public void initView() {
-		Log.d("MainActivity", "chushihua");
+		
 	}
 
 

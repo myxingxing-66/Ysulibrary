@@ -27,22 +27,8 @@ public class NewsDetailActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		EventBus.getDefault().register(this);
 		setContentView(R.layout.activity_news_detail);
-		wv_news_detail = (WebView)findViewById(R.id.wv_news_detail);
-		wv_news_detail.getSettings().setJavaScriptEnabled(true);
-		wv_news_detail.getSettings().setDefaultTextEncodingName("utf-8");
-		NewsLib newsLib = (NewsLib) getIntent().getSerializableExtra("news"); 
-		OkHttpUtil.enqueue(IPUtil.LIBRARY+newsLib.getHref(), null, new YsuCallback(mContext){
-
-			@Override
-			public void onSuccess(String result) throws IOException {
-				newsString = ParseLibrary.getNesDetail(result);
-				EventBus.getDefault().post(new YsuEvent(Config.SUCCESS));
-			}
-			@Override
-			public void onFailure(String error) throws IOException {
-				super.onFailure(error);
-			}
-		});
+		initView();
+		initData();
 	}
 	
 	@Subscribe(threadMode = ThreadMode.MAIN)
@@ -58,12 +44,25 @@ public class NewsDetailActivity extends BaseActivity {
 	
 	@Override
 	public void initView() {
-
+		wv_news_detail = (WebView)findViewById(R.id.wv_news_detail);
+		wv_news_detail.getSettings().setJavaScriptEnabled(true);
+		wv_news_detail.getSettings().setDefaultTextEncodingName("utf-8");
 	}
 
 	@Override
 	public void initData() {
-
+		NewsLib newsLib = (NewsLib) getIntent().getSerializableExtra("news"); 
+		OkHttpUtil.enqueue(IPUtil.LIBRARY+newsLib.getHref(), null, new YsuCallback(mContext){
+			@Override
+			public void onSuccess(String result) throws IOException {
+				newsString = ParseLibrary.getNesDetail(result);
+				EventBus.getDefault().post(new YsuEvent(Config.SUCCESS));
+			}
+			@Override
+			public void onFailure(String error) throws IOException {
+				super.onFailure(error);
+			}
+		});
 	}
 
 	@Override

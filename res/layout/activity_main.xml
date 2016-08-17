@@ -18,34 +18,35 @@
 	<RadioGroup 
 	    android:id="@+id/main_group"
 	    android:layout_width="match_parent"
-	    android:layout_height="50dp"
+	    android:layout_height="45dp"
 	    android:layout_gravity="bottom"
 	    android:background="@color/bottom_grey"
 	    android:gravity="center_vertical"
 	    android:orientation="horizontal"
-	    android:paddingTop="5dp"
-	    android:paddingBottom="3dp">
+	    android:paddingTop="3dp"
+	    android:paddingBottom="2dp">
 	    
 	    <RadioButton 
 	        android:id="@+id/rb_msg"
 	        style="@style/main_tab_bottom"
 	        android:drawableTop="@drawable/rb_msg"
 	        android:textSize="12sp"
-	        android:text="通知公告"/>
+	        android:textColor="@color/main_bottom_text_color"
+	        android:text="@string/notice"/>
 	    
 	    <RadioButton 
 	        android:id="@+id/rb_main"
 	        style="@style/main_tab_bottom"
 	        android:drawableTop="@drawable/rb_main"
 	        android:textSize="12sp"
-	        android:text="检索"/>
+	        android:text="@string/search"/>
 	    
 	    <RadioButton 
 	        android:id="@+id/rb_my_center"
 	        style="@style/main_tab_bottom"
 	        android:drawableTop="@drawable/rb_my_center"
 	        android:textSize="12sp"
-	        android:text="个人"/>
+	        android:text="@string/my_center"/>
 	    
 	</RadioGroup>
     

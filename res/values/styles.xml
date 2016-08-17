@@ -20,7 +20,7 @@
     <!-- 底部按钮的样式 -->
     <style name="main_tab_bottom">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/title_text_gray</item>
+        <item name="android:textColor">@color/main_bottom_text_color</item>
         <item name="android:ellipsize">marquee</item>
         <item name="android:gravity">center</item>
         <item name="android:background">#00000000</item>
