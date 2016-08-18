@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -91,8 +92,6 @@ public class LoginActivity extends BaseActivity {
 		btn_login = (Button)findViewById(R.id.btn_login);
 		imv_checkcode = (ImageView)findViewById(R.id.imv_checkcode);
 		cb_rember = (CheckBox)findViewById(R.id.cb_rember);
-		et_number.setText("130120010082");
-		et_passwd.setText("888"); 
 		btn_login.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -112,12 +111,22 @@ public class LoginActivity extends BaseActivity {
 					OkHttpUtil.enqueue(IPUtil.login, maps, new YsuCallback(mContext){
 						@Override 
 						public void onSuccess(String result) throws IOException {
-							super.onSuccess(result);
 							try {
 								final String res = Jsoup.parse(result).getElementById("header_opac").getElementsByTag("strong").text();
 								if (TextUtils.isEmpty(res)) { 
 									EventBus.getDefault().post(new LoginSucceedEvent(false));
 								}else {
+									String accountId=et_number.getText().toString();
+									String passwordId=et_passwd.getText().toString();
+									editor=pref.edit();
+									if(cb_rember.isChecked()){
+										editor.putBoolean("remember_password", true);
+										editor.putString("accountId", accountId);
+										editor.putString("passwordId", passwordId);
+									}else{
+										editor.clear();
+									}
+									editor.commit();
 									String name = Jsoup.parse(result).getElementById("header_opac").getElementsByTag("font").text();
 									SingleManager.getInstance().getCurrentUser().setName(name);
 									SingleManager.getInstance().getCurrentUser().setNumber(et_number.getText().toString().trim());
@@ -152,6 +161,17 @@ public class LoginActivity extends BaseActivity {
 				handler.sendMessage(message);
 			}
 		}).start();
+		
+		pref=PreferenceManager.getDefaultSharedPreferences(this);
+		boolean isRemember=pref.getBoolean("remember_password", false);
+		if(isRemember){
+			String accountId=pref.getString("accountId", " ");
+			String passwordId=pref.getString("passwordId", " ");
+			et_number.setText(accountId);
+			et_passwd.setText(passwordId);
+			cb_rember.setChecked(true);
+		}
+		
 	}
 
 }
