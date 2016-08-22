@@ -9,6 +9,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -30,6 +31,11 @@ public abstract class BaseActivity extends Activity {
 		getWindowManager().getDefaultDisplay().getMetrics(metric);
 		mScreenWidth = metric.widthPixels;
 		mScreenHeight = metric.heightPixels;
+	}
+	
+	//·µ»ØÊÂ¼þ
+	public void back(View view){
+		finish();
 	}
 	
 	/**

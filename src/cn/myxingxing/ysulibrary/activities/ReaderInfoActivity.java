@@ -25,11 +25,11 @@ public class ReaderInfoActivity extends BaseActivity {
 	private List<String> info;
 	private ListView lv_info;
 	private ReaderInfoAdapter readerInfoAdapter;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_reder_info);
+		setContentView(R.layout.activity_reader_info);
 		EventBus.getDefault().register(this);
 		initData();
 		initView();
@@ -39,7 +39,7 @@ public class ReaderInfoActivity extends BaseActivity {
 	public void initView() {
 		lv_info = (ListView)findViewById(R.id.lv_info);
 	}
-
+	
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	// 在ui线程执行
 	public void onUserEvent(YsuEvent event) {

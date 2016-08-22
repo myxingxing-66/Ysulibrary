@@ -8,7 +8,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/base_action_bar_height"
         android:background="#12B7F5">
-
+		<Button 
+            android:id="@+id/btn_back"
+            style="@style/activity_top_bar_btn_back"/>
         <TextView
             style="@style/activity_top_bar_title_text"
             android:layout_width="wrap_content"
