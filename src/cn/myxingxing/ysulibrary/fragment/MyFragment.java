@@ -108,10 +108,10 @@ public class MyFragment extends BaseFragment implements OnClickListener{
 			case R.id.ly_lend_history:
 				startActivity(new Intent(ct, LendHistoryActivity.class));
 				break;
-			case R.id.lv_asord_history:
+			case R.id.ly_recom_history:
 				startActivity(new Intent(ct, AsordHistoryActivity.class));
 				break;
-			case R.id.lv_pre_book:
+			case R.id.ly_appointment:
 				startActivity(new Intent(ct, PreBookActivity.class));
 			default:
 				break;
