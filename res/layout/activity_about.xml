@@ -21,5 +21,79 @@
             android:text="关于" />
 
     </RelativeLayout>
-
+	
+    <ImageView 
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_launcher"
+        android:layout_gravity="center_horizontal"/>
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:text="燕门求知V1.0"/>
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/base_horization_line"/>
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+        
+        <TextView 
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="邮箱:"/>
+        
+        <TextView 
+            android:layout_toRightOf="@id/tv_email"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="myxingxing66@126.com"/>
+        
+    </RelativeLayout>
+    
+    <View 
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@drawable/base_horization_line"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:text="此APP目前一直由我个人独自维护,\n精力有限,有任何意见欢迎大家反馈"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:autoLink="web"
+        android:text="https://github.com/myxingxing-66/Ysulibrary"/>
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:autoLink="web"
+        android:text="http://www.myxingxing.cn/ysulibrary"/>
+    
 </LinearLayout>
