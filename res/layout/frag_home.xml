@@ -20,9 +20,7 @@
             <TextView 
                 android:id="@+id/tv_title"
                 android:text="检索"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"/>
+                style="@style/activity_top_bar_title_text"/>
             <ImageView 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

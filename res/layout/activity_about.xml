@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+   android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
+    android:orientation="vertical"
+    android:background="@color/bg_grey" >
+	
     <RelativeLayout 
         android:layout_width="match_parent"
         android:layout_height="@dimen/base_action_bar_height"
         android:background="@color/base_topbar_bg">
-
+		
+        <Button 
+            android:id="@+id/btn_back"
+            style="@style/activity_top_bar_btn_back"/>
+        
         <TextView
             style="@style/activity_top_bar_title_text"
-            android:text="通知公告" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关于" />
 
     </RelativeLayout>
-	
-    <cn.myxingxing.ysulibrary.view.xlist.XListView 
-        android:id="@+id/lv_news"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </cn.myxingxing.ysulibrary.view.xlist.XListView>
-    
+
 </LinearLayout>

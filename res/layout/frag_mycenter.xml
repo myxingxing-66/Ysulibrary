@@ -434,6 +434,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@drawable/base_horization_line" />
+            
+            <LinearLayout
+                android:id="@+id/ly_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/my_center_item_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    style="@style/my_center_icon"
+                    android:layout_width="@dimen/my_center_icon_side"
+                    android:layout_height="@dimen/my_center_icon_side"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/about" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/my_center_text_margin_left"
+                    android:text="关于"
+                    android:textSize="@dimen/my_center_text_size" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/my_center_item_height"
+                    android:layout_weight="1" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/base_margin_side"
+                        android:src="@drawable/into_more" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/base_horization_line" />
+            
         </LinearLayout>
     </ScrollView>
 

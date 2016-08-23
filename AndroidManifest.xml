@@ -35,6 +35,7 @@
         <activity android:name="cn.myxingxing.ysulibrary.activities.BookDetailActivity"></activity>
         <activity android:name="cn.myxingxing.ysulibrary.activities.NewsDetailActivity"></activity>
         <activity android:name="cn.myxingxing.ysulibrary.activities.SuggestionActivity"></activity>
+        <activity android:name="cn.myxingxing.ysulibrary.activities.AboutActivity"></activity>
     </application>
 
 </manifest>

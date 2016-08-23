@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import cn.myxingxing.ysulibrary.R;
+import cn.myxingxing.ysulibrary.activities.AboutActivity;
 import cn.myxingxing.ysulibrary.activities.AsordHistoryActivity;
 import cn.myxingxing.ysulibrary.activities.LendHistoryActivity;
 import cn.myxingxing.ysulibrary.activities.LoginActivity;
@@ -35,7 +36,7 @@ public class MyFragment extends BaseFragment implements OnClickListener{
 	private LinearLayout ly_my_login,ly_my_information;
 	private LinearLayout ly_now_lend,ly_lend_history;
 	private LinearLayout ly_recom_history,ly_appointment,ly_logout,ly_suggestion;
-	private LinearLayout ly_have_login;
+	private LinearLayout ly_have_login,ly_about;
 	private TextView tv_to_login,tv_name,tv_number;
 	private ImageView imv_to_login;
 	
@@ -79,6 +80,10 @@ public class MyFragment extends BaseFragment implements OnClickListener{
 	public void onClick(View v) {
 		if (v.getId() == R.id.ly_suggestion) {
 			startActivity(new Intent(ct, SuggestionActivity.class));
+			return;
+		}
+		if (v.getId() == R.id.ly_about) {
+			startActivity(new Intent(ct, AboutActivity.class));
 			return;
 		}
 		if (SingleManager.getInstance().getCurrentUser().isLogined()) {
@@ -138,7 +143,9 @@ public class MyFragment extends BaseFragment implements OnClickListener{
 		tv_number = (TextView)view.findViewById(R.id.tv_number);
 		imv_to_login = (ImageView)view.findViewById(R.id.imv_to_login);
 		ly_suggestion = (LinearLayout)view.findViewById(R.id.ly_suggestion);
+		ly_about = (LinearLayout)view.findViewById(R.id.ly_about);
 		
+		ly_about.setOnClickListener(this);
 		ly_my_login.setOnClickListener(this);
 		ly_my_information.setOnClickListener(this);
 		ly_now_lend.setOnClickListener(this);
