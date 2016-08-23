@@ -15,7 +15,7 @@
         <item >责任者拼音</item>
     </string-array>
     
-    <string name="app_name">YsuLibrary</string>
+    <string name="app_name">燕门求知</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 	<string name="login_password_hint">请输入密码&#8230;</string>
