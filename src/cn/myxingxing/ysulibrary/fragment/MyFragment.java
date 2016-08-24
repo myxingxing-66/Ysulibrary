@@ -70,7 +70,7 @@ public class MyFragment extends BaseFragment implements OnClickListener{
 			ly_my_login.setClickable(true);
 		}
 	}
-
+ 
 	@Override
 	public void initData() {
 		
