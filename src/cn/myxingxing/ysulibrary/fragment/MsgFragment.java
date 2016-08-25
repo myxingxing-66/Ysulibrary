@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.activities.NewsDetailActivity;
 import cn.myxingxing.ysulibrary.adapter.NewsLibrsryAdapter;
@@ -25,11 +26,10 @@ import cn.myxingxing.ysulibrary.net.IPUtil;
 import cn.myxingxing.ysulibrary.net.OkHttpUtil;
 import cn.myxingxing.ysulibrary.net.YsuCallback;
 import cn.myxingxing.ysulibrary.util.ParseLibrary;
-import cn.myxingxing.ysulibrary.view.xlist.XListView;
 
 public class MsgFragment extends BaseFragment implements OnItemClickListener{
 	
-	private XListView lv_news;
+	private ListView lv_news;
 	private List<NewsLib> listNews;
 	private NewsLibrsryAdapter newsLibraryAdapter;
 	
@@ -91,7 +91,7 @@ public class MsgFragment extends BaseFragment implements OnItemClickListener{
 
 	@Override
 	public void initView() {
-		lv_news = (XListView)view.findViewById(R.id.lv_news);
+		lv_news = (ListView)view.findViewById(R.id.lv_news);
 		lv_news.setOnItemClickListener(this);
 	}
 

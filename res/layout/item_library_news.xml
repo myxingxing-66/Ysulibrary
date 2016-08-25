@@ -6,12 +6,21 @@
     
 	<TextView 
 	    android:id="@+id/tv_news_title"
+	    android:layout_marginLeft="@dimen/base_margin_side"
+	    android:layout_marginRight="@dimen/base_margin_side"
+	    android:singleLine="true"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
+	    android:textSize="15sp"
 	    android:text="新闻标题"/>
     
 	<TextView 
 	    android:id="@+id/tv_news_time"
+	    android:layout_marginLeft="@dimen/base_margin_side"
+	    android:layout_marginRight="@dimen/base_margin_side"
+	    android:singleLine="true"
+	    android:layout_marginTop="3dp"
+	    android:layout_marginBottom="5dp"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:text="时间"/>
