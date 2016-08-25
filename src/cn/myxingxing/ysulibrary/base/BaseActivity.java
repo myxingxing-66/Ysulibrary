@@ -4,6 +4,7 @@ package cn.myxingxing.ysulibrary.base;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.myxingxing.ysulibrary.util.SingleManager;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -36,6 +37,13 @@ public abstract class BaseActivity extends Activity {
 	//返回事件
 	public void back(View view){
 		finish();
+	}
+	
+	/**
+	 * 用户是否登录
+	 */
+	protected boolean isLogined(){
+		return SingleManager.getInstance().getCurrentUser().isLogined();
 	}
 	
 	/**

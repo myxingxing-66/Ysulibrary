@@ -20,6 +20,7 @@
     </RelativeLayout>
 	
     <EditText 
+        android:id="@+id/et_suggestion"
         android:layout_width="match_parent"
         android:layout_marginTop="30dp"
         android:layout_height="100dp"
@@ -28,6 +29,7 @@
         android:background="@color/white"/>
     
     <Button 
+        android:id="@+id/btn_ok"
         android:layout_width="match_parent"
         android:layout_marginTop="30dp"
         android:layout_height="40dp"
