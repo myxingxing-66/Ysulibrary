@@ -19,7 +19,7 @@ import cn.myxingxing.ysulibrary.bean.NoteList;
 import cn.myxingxing.ysulibrary.bean.NowLend;
 import cn.myxingxing.ysulibrary.bean.SearchBook;
 import cn.myxingxing.ysulibrary.config.Config;
-import cn.myxingxing.ysulibrary.event.YsuEvent;
+import cn.myxingxing.ysulibrary.event.PersonInfoEvent;
 
 public class ParseLibrary {
 	
@@ -54,7 +54,7 @@ public class ParseLibrary {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			EventBus.getDefault().post(new YsuEvent(Config.READERINFO_PARSE_ERROR));
+			EventBus.getDefault().post(new PersonInfoEvent(Config.FAILED));
 		}
 		return info;
 	}

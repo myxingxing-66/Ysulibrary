@@ -14,6 +14,7 @@ import cn.myxingxing.ysulibrary.R;
 import cn.myxingxing.ysulibrary.adapter.ReaderInfoAdapter;
 import cn.myxingxing.ysulibrary.base.BaseActivity;
 import cn.myxingxing.ysulibrary.config.Config;
+import cn.myxingxing.ysulibrary.event.PersonInfoEvent;
 import cn.myxingxing.ysulibrary.event.YsuEvent;
 import cn.myxingxing.ysulibrary.net.IPUtil;
 import cn.myxingxing.ysulibrary.net.OkHttpUtil;
@@ -42,13 +43,13 @@ public class ReaderInfoActivity extends BaseActivity {
 	
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	// 在ui线程执行
-	public void onUserEvent(YsuEvent event) {
+	public void onUserEvent(PersonInfoEvent event) {
 		switch (event.getInfo()) {
-		case Config.READERINFO_PARSE_SUCCESS:
+		case Config.SUCCESS:
 			readerInfoAdapter = new ReaderInfoAdapter(mContext, info);
 			lv_info.setAdapter(readerInfoAdapter);
 			break;
-		case Config.READERINFO_PARSE_ERROR:
+		case Config.FAILED:
 			ShowToast("数据异常,请重试...");
 			break;
 		default:
@@ -65,9 +66,9 @@ public class ReaderInfoActivity extends BaseActivity {
 				info = new ArrayList<String>();
 				info = ParseLibrary.getReaderInfo(result);
 				if (info.size() != 0) {
-					EventBus.getDefault().post(new YsuEvent(Config.READERINFO_PARSE_SUCCESS));
+					EventBus.getDefault().post(new PersonInfoEvent(Config.SUCCESS));
 				}else {
-					EventBus.getDefault().post(new YsuEvent(Config.READERINFO_PARSE_ERROR));
+					EventBus.getDefault().post(new PersonInfoEvent(Config.FAILED));
 				}
 			}
 

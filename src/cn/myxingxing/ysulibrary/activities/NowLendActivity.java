@@ -44,16 +44,13 @@ public class NowLendActivity extends BaseActivity {
 	// 在ui线程执行
 	public void onUserEvent(NowLendEvent event) {
 		switch (event.getInfo()) {
-		case Config.NOW_LEND_EMPTY:
+		case Config.EMPTY:
 			ShowToast("您当前暂未借阅任何书籍");
 			break;
-		case Config.NOW_LEND_SUCCESS:
+		case Config.SUCCESS:
 			System.out.println("接收到消息");
 			nowLendAdapter = new NowLendAdapter(mContext, now_lends);
 			lv_now_lend.setAdapter(nowLendAdapter);
-			break;
-		case Config.NOW_LEND_FAILED:
-			ShowToast("数据解析错误");
 			break;
 		default:
 			break;
@@ -67,12 +64,10 @@ public class NowLendActivity extends BaseActivity {
 			public void onSuccess(String result) throws IOException {
 				super.onSuccess(result);
 				now_lends = ParseLibrary.getNowLend(result);
-				if (now_lends.size() == 0) {
-					EventBus.getDefault().post(new NowLendEvent(Config.NOW_LEND_EMPTY));
+				if (now_lends == null) {
+					EventBus.getDefault().post(new NowLendEvent(Config.EMPTY));
 				}else if (now_lends.size() != 0) {
-					EventBus.getDefault().post(new NowLendEvent(Config.NOW_LEND_SUCCESS));
-				}else {
-					EventBus.getDefault().post(new NowLendEvent(Config.NOW_LEND_FAILED));
+					EventBus.getDefault().post(new NowLendEvent(Config.SUCCESS));
 				}
 			}
 
