@@ -390,10 +390,10 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener,On
 			intent.putExtra("detailUrl", searchBookList.get(position-1).getBook_url().toString());
 			break;
 		case LV_NEW:
-			intent.putExtra("detailUrl", topLendList.get(position-1).getBookhref().toString());
+			intent.putExtra("detailUrl", newBookList.get(position-1).getDetailUrl().toString());
 			break;
 		case LV_HOT:
-			intent.putExtra("detailUrl", newBookList.get(position-1).getDetailUrl().toString());
+			intent.putExtra("detailUrl", topLendList.get(position-1).getBookhref().toString());
 			break;
 		default:
 			break;
