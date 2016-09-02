@@ -67,7 +67,6 @@ public class AsordHistoryActivity extends BaseActivity {
 		lv_asord_history.setPullLoadEnable(true);
 		lv_asord_history.setPullRefreshEnable(true);
 		lv_asord_history.setXListViewListener(new IXListViewListener() {
-			
 			@Override
 			public void onRefresh() {
 				page = 1;
@@ -92,7 +91,7 @@ public class AsordHistoryActivity extends BaseActivity {
 			public void onSuccess(String result) throws IOException {
 				super.onSuccess(result);
 				List<BookAsord> list = ParseLibrary.getAsordHist(result);
-				if (list.size() == 0) {
+				if (list == null) {
 					EventBus.getDefault().post(new AsordHistoryEvent(Config.ASORD_HISTORY_NOMORE));
 				}else if (list.size() != 0) {
 					asords.addAll(list);

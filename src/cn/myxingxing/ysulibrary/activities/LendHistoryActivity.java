@@ -43,18 +43,17 @@ public class LendHistoryActivity extends BaseActivity {
 	//在ui线程执行
 	public void onUserEvent(LendHistoryEvent lendHistoryEvent){
 		switch (lendHistoryEvent.getInfo()) {
-		case Config.LEND_HISTORY_SUCCESS:
+		case Config.SUCCESS:
 			lendHistoryAdapter = new LendHistoryAdapter(lendlist, mContext);
 			lv_lend_history.setAdapter(lendHistoryAdapter);
+			lv_lend_history.stopRefresh();
 			break;
-		case Config.LEND_HISTORY_EMPTY:
+		case Config.FAILED:
 			ShowToast("您还未借过任何书籍");
 			break;
-		case Config.LEND_HISTORY_FAILED:
-			ShowToast("数据解析错误");
-			break;
-		case Config.LEND_HISTORY_NOMORE:
-			ShowToast("已无更多数据");
+		case Config.MORE:
+			lendHistoryAdapter.notifyDataSetChanged();
+			lv_lend_history.stopLoadMore();
 			break;
 		default:
 			break;
@@ -67,7 +66,6 @@ public class LendHistoryActivity extends BaseActivity {
 		lv_lend_history.setPullLoadEnable(true);
 		lv_lend_history.setPullRefreshEnable(true);
 		lv_lend_history.setXListViewListener(new IXListViewListener() {
-			
 			@Override
 			public void onRefresh() {
 				page = 1;
@@ -87,18 +85,15 @@ public class LendHistoryActivity extends BaseActivity {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("page", page+"");
 		OkHttpUtil.enqueue(IPUtil.lend_history, map, new YsuCallback(mContext){
-
 			@Override
 			public void onSuccess(String result) throws IOException {
 				super.onSuccess(result);
 				List<BookHist> list = ParseLibrary.getLendHist(result);
-				if (list.size() == 0) {
-					EventBus.getDefault().post(new LendHistoryEvent(Config.LEND_HISTORY_NOMORE));
+				if (list == null) {
+					EventBus.getDefault().post(new LendHistoryEvent(Config.FAILED));
 				}else if (list.size() != 0) {
 					lendlist.addAll(list);
-					EventBus.getDefault().post(new LendHistoryEvent(Config.LEND_HISTORY_SUCCESS));
-				}else {
-					EventBus.getDefault().post(new LendHistoryEvent(Config.LEND_HISTORY_FAILED));
+					EventBus.getDefault().post(new LendHistoryEvent(Config.MORE));
 				}
 			}
 
@@ -114,17 +109,14 @@ public class LendHistoryActivity extends BaseActivity {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("page", page+"");
 		OkHttpUtil.enqueue(IPUtil.lend_history, map, new YsuCallback(mContext){
-
 			@Override
 			public void onSuccess(String result) throws IOException {
 				super.onSuccess(result);
 				lendlist = ParseLibrary.getLendHist(result);
-				if (lendlist.size() == 0) {
-					EventBus.getDefault().post(new LendHistoryEvent(Config.LEND_HISTORY_EMPTY));
+				if (lendlist == null) {
+					EventBus.getDefault().post(new LendHistoryEvent(Config.FAILED));
 				}else if (lendlist.size() != 0) {
-					EventBus.getDefault().post(new LendHistoryEvent(Config.LEND_HISTORY_SUCCESS));
-				}else {
-					EventBus.getDefault().post(new LendHistoryEvent(Config.LEND_HISTORY_FAILED));
+					EventBus.getDefault().post(new LendHistoryEvent(Config.SUCCESS));
 				}
 			}
 
