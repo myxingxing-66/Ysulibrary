@@ -12,7 +12,7 @@
         <TextView
             style="@style/activity_top_bar_title_text"
             android:text="通知公告" />
-
+  
     </RelativeLayout>
 	
     <ListView
